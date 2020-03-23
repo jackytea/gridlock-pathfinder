@@ -19,7 +19,3 @@ Currently in alpha stage, more to come.
 ### Breadth First Search (8-Connectivity)
 
 - Generates an auxiliary adjacency list to find the shortest path via mapping and queuing. Takes in to consideration diagonal directions.
-
-# Future Implementations
-
-Coming soon...
