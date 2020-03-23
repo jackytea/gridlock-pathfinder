@@ -1,0 +1,53 @@
+<!--
+    Jacky Tea
+    Gridlock Pathfinder
+    index.html
+    
+    A pathfinding algorithm visualization.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styles.css" />
+    <title>Gridlock Pathfinder</title>
+</head>
+
+<body>
+    <header class="top-bar">
+        <div class="title">
+            <h1>Gridlock Pathfinder <span style="font-size: 15px;">(Alpha Version 1.0.0)</span></h1>
+        </div>
+        <div class="dimensions-fields">
+            <form name="grid-form" id="dimensions-form" onsubmit="genGrid(event)" method="POST">
+                <label for="rows">Rows</label>
+                <input name="rows" type="number" value="10" />
+                <label for="rows">Columns</label>
+                <input name="columns" type="number" value="10" />
+                <input id="submit-button" type="submit" value="Generate Grid" />
+            </form>
+        </div>
+    </header>
+    <div class="matrix">
+        <h3 id="instructions"></h3>
+        <h1 id="empty-message">Hmm... seems like you don't have a grid yet. <br />Click on generate grid in the top
+            right corner to make one.</h1>
+        <div id="theGrid" class="grids"></div>
+    </div>
+    <footer class="bottom-bar">
+        <h3 id="my-name">&copy; Jacky Tea, 2020</h3>
+        <div class="options">
+        <button onclick="linearScan()">Linear Scan</button>
+        <button onclick="breadthFirstSearch()">Breadth First Search No Diagonal</button>
+        <button onclick="breadthFirstSearch8Directions()">Breadth First Search Diagonals</button>
+        </div>
+        <h3 id="timing">Source Code</h3>
+    </footer>
+    <script src="./scripts/pathfinder.js"></script>
+</body>
+
+</html>

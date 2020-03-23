@@ -1,0 +1,112 @@
+/*
+    Jacky Tea
+    Gridlock Pathfinder
+    styles.css
+    
+    A pathfinding algorithm visualization.
+*/
+
+html, body {
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 7vh;
+    background: rgb(30, 30, 30);
+}
+
+.top-bar .title h1 {
+    padding: 1vh 0 0 20px;
+    margin: 0;
+    color: white;
+}
+
+.top-bar .dimensions-fields #submit-button {
+    font-size: 15px;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    background: rgb(31, 102, 255);
+    padding: 10px;
+    height: 4vh;
+    margin: 0 0 0 10px;
+}
+
+.top-bar .dimensions-fields #submit-button:hover {
+    cursor: pointer;
+    transition: 0.2s;
+    background: rgb(0, 58, 182);
+}
+
+.top-bar .dimensions-fields {
+    padding: 2vh 20px 0 0;
+    margin: 0;
+    color: white;
+}
+
+.matrix {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    height: 84vh;
+}
+
+.matrix #empty-message {
+    color: rgb(154, 154, 154);
+    width: 100%;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.matrix .grids {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.bottom-bar {
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 6.5vh;
+    background: rgb(30, 30, 30);
+}
+
+.bottom-bar h3 {
+    padding: 2vh 0 0 0;
+    margin: 0;
+}
+
+.bottom-bar .options {
+    display: flex;
+    justify-content: center;
+}
+
+.bottom-bar .options button {
+    font-size: 15px;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    background: rgb(31, 102, 255);
+    padding: 10px;
+    height: 4vh;
+    margin: 1vh 0 0 10px;
+}
+
+.bottom-bar button:hover {
+    cursor: pointer;
+    transition: 0.2s;
+    background: rgb(0, 58, 182);
+}
