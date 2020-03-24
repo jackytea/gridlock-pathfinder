@@ -12,6 +12,7 @@ let endPoint = 0;
 let prevStartPoint = 0;
 let prevEndPoint = 0;
 let startOrEnd = 1; //1 is start, 2 is end
+let intervalTracker = [];
 
 //set start and end coordinates
 function setStartOrEnd(id) {
@@ -174,10 +175,14 @@ function linearScanHelper() {
             document.getElementById(i.toString()).style.background = "grey";
         }
     }
+    for (let i = 0; i < intervalTracker.length; i++) {
+        clearInterval(intervalTracker[i]);
+    }
     if (startPoint > endPoint) {
         let uid = startPoint - 1;
         let cell = document.getElementById(uid.toString());
         let run = setInterval(traverse, 50);
+        intervalTracker.push(run);
         function traverse() {
             if (uid === endPoint || uid < 0 || uid > limits) {
                 clearInterval(run);
@@ -201,6 +206,7 @@ function linearScanHelper() {
         let uid = startPoint + 1;
         let cell = document.getElementById(uid.toString());
         let run = setInterval(traverse, 50);
+        intervalTracker.push(run);
         function traverse() {
             if (uid === endPoint || uid < 0 || uid > limits) {
                 clearInterval(run);
@@ -343,6 +349,11 @@ function breadthFirstSearchHelper(graph, start, end) {
 
 //setup matrixes and trace BFS path for a 4 connectivity traversal
 function breadthFirstSearch() {
+
+    for (let i = 0; i < intervalTracker.length; i++) {
+        clearInterval(intervalTracker[i]);
+    }
+
     //init 2d array
     let matrix = [];
     let n = 0;
@@ -370,6 +381,7 @@ function breadthFirstSearch() {
 
     //highlight path
     let run = setInterval(traverse, 50);
+    intervalTracker.push(run);
     let i = 0;
     function traverse() {
         if (i === shortestPath.length) {
@@ -391,6 +403,11 @@ function breadthFirstSearch() {
 
 //setup matrixes and trace BFS path for a 8 connectivity traversal
 function breadthFirstSearch8Directions() {
+
+    for (let i = 0; i < intervalTracker.length; i++) {
+        clearInterval(intervalTracker[i]);
+    }
+
     //init 2d array
     let matrix = [];
     let n = 0;
@@ -418,6 +435,7 @@ function breadthFirstSearch8Directions() {
 
     //highlight path
     let run = setInterval(traverse, 50);
+    intervalTracker.push(run);
     let i = 0;
     function traverse() {
         if (i === shortestPath.length) {
