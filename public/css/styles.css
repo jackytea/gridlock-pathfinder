@@ -34,7 +34,7 @@ html, body {
     border: none;
     border-radius: 50px;
     background: rgb(31, 102, 255);
-    padding: 10px;
+    padding: 5px;
     height: 4vh;
     margin: 0 0 0 10px;
 }
@@ -100,7 +100,18 @@ html, body {
     border: none;
     border-radius: 50px;
     background: rgb(31, 102, 255);
-    padding: 10px;
+    padding: 5px;
+    height: 4vh;
+    margin: 1vh 5px 0 10px;
+}
+
+.bottom-bar .options #clear {
+    font-size: 15px;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    background: rgb(255, 28, 28);
+    padding: 5px;
     height: 4vh;
     margin: 1vh 0 0 10px;
 }
@@ -109,4 +120,10 @@ html, body {
     cursor: pointer;
     transition: 0.2s;
     background: rgb(0, 58, 182);
+}
+
+.bottom-bar .options #clear:hover {
+    cursor: pointer;
+    transition: 0.2s;
+    background: rgb(155, 11, 11);
 }

@@ -116,13 +116,13 @@ function genGrid(e) {
     rc.setDimensions(e.target["rows"].value, e.target["columns"].value);
     let rows = rc.getDimensions().rows;
     let cols = rc.getDimensions().cols;
-    if (rows > 10 || cols > 20 || rows <= 0 || cols <= 0) {
+    if (rows > 10 || cols > 26 || rows <= 0 || cols <= 0) {
         let instructionsDiv = document.getElementById("instructions");
         instructionsDiv.innerHTML = "";
         let emptyMessageDiv = document.getElementById("empty-message");
         emptyMessageDiv.innerHTML = "";
         emptyMessageDiv.style.color = "darkorange";
-        let error = document.createTextNode("Woops! Max rows is 10 and max columns is 20.");
+        let error = document.createTextNode("Woops! Max rows is 10 and max columns is 26.");
         emptyMessageDiv.appendChild(error);
         return;
     }
@@ -164,6 +164,29 @@ function genGrid(e) {
             ++uid;
             currentRow.appendChild(theCol);
         }
+    }
+}
+
+
+//clear grid, reset intervals and resets points
+function clearGrid() {
+    //reset points
+    startPoint = 0;
+    endPoint = 0;
+    prevStartPoint = 0;
+    prevEndPoint = 0;
+    startOrEnd = 1;
+
+    //reset grid and running intervals
+    let limits = rc.getDimensions().rows * rc.getDimensions().cols;
+    for (let i = 0; i < limits; i++) {
+        if (i != startPoint && i != endPoint) {
+            document.getElementById(i.toString()).innerHTML = "";
+            document.getElementById(i.toString()).style.background = "grey";
+        }
+    }
+    for (let i = 0; i < intervalTracker.length; i++) {
+        clearInterval(intervalTracker[i]);
     }
 }
 
