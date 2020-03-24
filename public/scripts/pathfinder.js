@@ -115,7 +115,7 @@ function genGrid(e) {
     rc.setDimensions(e.target["rows"].value, e.target["columns"].value);
     let rows = rc.getDimensions().rows;
     let cols = rc.getDimensions().cols;
-    if (rows > 10 || cols > 20) {
+    if (rows > 10 || cols > 20 || rows <= 0 || cols <= 0) {
         let instructionsDiv = document.getElementById("instructions");
         instructionsDiv.innerHTML = "";
         let emptyMessageDiv = document.getElementById("empty-message");
