@@ -6,6 +6,17 @@
     A pathfinding algorithm visualization.
 */
 
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    cursor: pointer;
+    transition: 0.2s;
+    color: rgb(31, 102, 255);
+}
+
 html, body {
     font-family: 'Roboto', sans-serif;
     width: 100%;
