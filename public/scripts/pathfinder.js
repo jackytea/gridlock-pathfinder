@@ -16,8 +16,10 @@ let startOrEnd = 1; //1 is start, 2 is end
 //set start and end coordinates
 function setStartOrEnd(id) {
     if (startOrEnd === 1) {
-        document.getElementById(prevStartPoint.toString()).innerHTML = "";
-        document.getElementById(prevStartPoint.toString()).style.background = "grey";
+
+        let prevStartPointDiv = document.getElementById(prevStartPoint.toString());
+        prevStartPointDiv.innerHTML = "";
+        prevStartPointDiv.style.background = "grey";
         prevStartPoint = id;
         startPoint = id;
 
@@ -33,15 +35,19 @@ function setStartOrEnd(id) {
         startSpan.style.transform = "translate(-50%, -50%)";
         startSpan.appendChild(startText);
 
-        document.getElementById(id.toString()).style.background = "green";
-        document.getElementById(id.toString()).style.color = "white";
-        document.getElementById(id.toString()).style.position = "relative";
-        document.getElementById(id.toString()).appendChild(startSpan);
+        let currentStartPointDiv = document.getElementById(id.toString());
+        currentStartPointDiv.style.background = "green";
+        currentStartPointDiv.style.color = "white";
+        currentStartPointDiv.style.position = "relative";
+        currentStartPointDiv.appendChild(startSpan);
 
         startOrEnd = 2;
+
     } else {
-        document.getElementById(prevEndPoint.toString()).innerHTML = "";
-        document.getElementById(prevEndPoint.toString()).style.background = "grey";
+
+        let prevEndPointDiv = document.getElementById(prevEndPoint.toString());
+        prevEndPointDiv.innerHTML = "";
+        prevEndPointDiv.style.background = "grey";
         prevEndPoint = id;
         endPoint = id;
 
@@ -57,11 +63,11 @@ function setStartOrEnd(id) {
         endSpan.style.transform = "translate(-50%, -50%)";
         endSpan.appendChild(endText);
 
-        document.getElementById(id.toString()).style.background = "orange";
-        document.getElementById(id.toString()).style.color = "white";
-        document.getElementById(id.toString()).style.position = "relative";
-        document.getElementById(id.toString()).appendChild(endSpan);
-
+        let currentEndPointDiv = document.getElementById(id.toString());
+        currentEndPointDiv.style.background = "orange";
+        currentEndPointDiv.style.color = "white";
+        currentEndPointDiv.style.position = "relative";
+        currentEndPointDiv.appendChild(endSpan);
 
         startOrEnd = 1;
     }
@@ -87,11 +93,13 @@ let rc = dimensions();
 function genGrid(e) {
 
     //remove prompt and append instructions
-    document.getElementById("empty-message").innerHTML = "";
-    document.getElementById("instructions").style.color = "black";
+    let emptyMessageDiv = document.getElementById("empty-message");
+    emptyMessageDiv.innerHTML = "";
+    let instructionsDiv = document.getElementById("instructions");
+    instructionsDiv.style.color = "black";
     let instructions = document.createTextNode("Great! Now click on any two points on the grid and make a path with the buttons below.");
-    document.getElementById("instructions").innerHTML = "";
-    document.getElementById("instructions").appendChild(instructions);
+    instructionsDiv.innerHTML = "";
+    instructionsDiv.appendChild(instructions);
 
     //reset points
     startPoint = 0;
@@ -108,11 +116,13 @@ function genGrid(e) {
     let rows = rc.getDimensions().rows;
     let cols = rc.getDimensions().cols;
     if (rows > 10 || cols > 20) {
-        document.getElementById("instructions").innerHTML = "";
-        document.getElementById("empty-message").innerHTML = "";
-        document.getElementById("empty-message").style.color = "darkorange";
+        let instructionsDiv = document.getElementById("instructions");
+        instructionsDiv.innerHTML = "";
+        let emptyMessageDiv = document.getElementById("empty-message");
+        emptyMessageDiv.innerHTML = "";
+        emptyMessageDiv.style.color = "darkorange";
         let error = document.createTextNode("Woops! Max rows is 10 and max columns is 20.");
-        document.getElementById("empty-message").appendChild(error);
+        emptyMessageDiv.appendChild(error);
         return;
     }
 
@@ -182,10 +192,11 @@ function linearScanHelper() {
             }
         }
         //amount of steps
+        let instructionsDiv = document.getElementById("instructions");
         let instructions = document.createTextNode("Shortest path via linear scan is " + Math.abs(startPoint - endPoint) + " steps.");
-        document.getElementById("instructions").innerHTML = "";
-        document.getElementById("instructions").style.color = "green";
-        document.getElementById("instructions").appendChild(instructions);
+        instructionsDiv.innerHTML = "";
+        instructionsDiv.style.color = "green";
+        instructionsDiv.appendChild(instructions);
     } else {
         let uid = startPoint + 1;
         let cell = document.getElementById(uid.toString());
@@ -203,10 +214,11 @@ function linearScanHelper() {
             }
         }
         //amount of steps
+        let instructionsDiv = document.getElementById("instructions");
         let instructions = document.createTextNode("Shortest path via linear scan is " + Math.abs(startPoint - endPoint) + " steps.");
-        document.getElementById("instructions").innerHTML = "";
-        document.getElementById("instructions").style.color = "green";
-        document.getElementById("instructions").appendChild(instructions);
+        instructionsDiv.innerHTML = "";
+        instructionsDiv.style.color = "green";
+        instructionsDiv.appendChild(instructions);
     }
 }
 
@@ -370,10 +382,11 @@ function breadthFirstSearch() {
     }
 
     //amount of steps
+    let instructionsDiv = document.getElementById("instructions");
     let instructions = document.createTextNode("Shortest path via quad-directional breadth first search is " + (shortestPath.length + 1) + " steps.");
-    document.getElementById("instructions").innerHTML = "";
-    document.getElementById("instructions").style.color = "green";
-    document.getElementById("instructions").appendChild(instructions);
+    instructionsDiv.innerHTML = "";
+    instructionsDiv.style.color = "green";
+    instructionsDiv.appendChild(instructions);
 }
 
 //setup matrixes and trace BFS path for a 8 connectivity traversal
@@ -417,9 +430,9 @@ function breadthFirstSearch8Directions() {
     }
 
     //amount of steps
+    let instructionsDiv = document.getElementById("instructions");
     let instructions = document.createTextNode("Shortest path via octal-directional breadth first search is " + (shortestPath.length + 1) + " steps.");
-    document.getElementById("instructions").innerHTML = "";
-    document.getElementById("instructions").style.color = "green";
-    document.getElementById("instructions").appendChild(instructions);
-
+    instructionsDiv.innerHTML = "";
+    instructionsDiv.style.color = "green";
+    instructionsDiv.appendChild(instructions);
 }
