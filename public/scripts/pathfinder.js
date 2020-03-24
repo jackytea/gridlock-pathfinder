@@ -182,7 +182,7 @@ function linearScanHelper() {
             }
         }
         //amount of steps
-        let instructions = document.createTextNode("Shortest path via non-diagonal breadth first search scan is " + Math.abs(startPoint - endPoint) + " steps.");
+        let instructions = document.createTextNode("Shortest path via linear scan is " + Math.abs(startPoint - endPoint) + " steps.");
         document.getElementById("instructions").innerHTML = "";
         document.getElementById("instructions").style.color = "green";
         document.getElementById("instructions").appendChild(instructions);
@@ -203,7 +203,7 @@ function linearScanHelper() {
             }
         }
         //amount of steps
-        let instructions = document.createTextNode("Shortest path via non-diagonal breadth first search scan is " + Math.abs(startPoint - endPoint) + " steps.");
+        let instructions = document.createTextNode("Shortest path via linear scan is " + Math.abs(startPoint - endPoint) + " steps.");
         document.getElementById("instructions").innerHTML = "";
         document.getElementById("instructions").style.color = "green";
         document.getElementById("instructions").appendChild(instructions);
@@ -370,7 +370,7 @@ function breadthFirstSearch() {
     }
 
     //amount of steps
-    let instructions = document.createTextNode("Shortest path via non-diagonal breadth first search scan is " + (shortestPath.length + 1) + " steps.");
+    let instructions = document.createTextNode("Shortest path via quad-directional breadth first search is " + (shortestPath.length + 1) + " steps.");
     document.getElementById("instructions").innerHTML = "";
     document.getElementById("instructions").style.color = "green";
     document.getElementById("instructions").appendChild(instructions);
@@ -417,7 +417,7 @@ function breadthFirstSearch8Directions() {
     }
 
     //amount of steps
-    let instructions = document.createTextNode("Shortest path via diagonal breadth first search scan is " + (shortestPath.length + 1) + " steps.");
+    let instructions = document.createTextNode("Shortest path via octal-directional breadth first search is " + (shortestPath.length + 1) + " steps.");
     document.getElementById("instructions").innerHTML = "";
     document.getElementById("instructions").style.color = "green";
     document.getElementById("instructions").appendChild(instructions);
