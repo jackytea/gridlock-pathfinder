@@ -109,9 +109,10 @@ function genGrid(e) {
     let cols = rc.getDimensions().cols;
     if (rows > 10 || cols > 20) {
         document.getElementById("instructions").innerHTML = "";
-        document.getElementById("instructions").style.color = "red";
+        document.getElementById("empty-message").innerHTML = "";
+        document.getElementById("empty-message").style.color = "darkorange";
         let error = document.createTextNode("Woops! Max rows is 10 and max columns is 20.");
-        document.getElementById("instructions").appendChild(error);
+        document.getElementById("empty-message").appendChild(error);
         return;
     }
 
@@ -176,9 +177,15 @@ function linearScanHelper() {
                 }
                 cell.style.background = "red";
                 uid--;
+
                 cell = document.getElementById(uid.toString());
             }
         }
+        //amount of steps
+        let instructions = document.createTextNode("Shortest path via non-diagonal breadth first search scan is " + Math.abs(startPoint - endPoint) + " steps.");
+        document.getElementById("instructions").innerHTML = "";
+        document.getElementById("instructions").style.color = "green";
+        document.getElementById("instructions").appendChild(instructions);
     } else {
         let uid = startPoint + 1;
         let cell = document.getElementById(uid.toString());
@@ -195,6 +202,11 @@ function linearScanHelper() {
                 cell = document.getElementById(uid.toString());
             }
         }
+        //amount of steps
+        let instructions = document.createTextNode("Shortest path via non-diagonal breadth first search scan is " + Math.abs(startPoint - endPoint) + " steps.");
+        document.getElementById("instructions").innerHTML = "";
+        document.getElementById("instructions").style.color = "green";
+        document.getElementById("instructions").appendChild(instructions);
     }
 }
 
@@ -356,6 +368,12 @@ function breadthFirstSearch() {
             i++;
         }
     }
+
+    //amount of steps
+    let instructions = document.createTextNode("Shortest path via non-diagonal breadth first search scan is " + (shortestPath.length + 1) + " steps.");
+    document.getElementById("instructions").innerHTML = "";
+    document.getElementById("instructions").style.color = "green";
+    document.getElementById("instructions").appendChild(instructions);
 }
 
 //setup matrixes and trace BFS path for a 8 connectivity traversal
@@ -397,4 +415,11 @@ function breadthFirstSearch8Directions() {
             i++;
         }
     }
+
+    //amount of steps
+    let instructions = document.createTextNode("Shortest path via diagonal breadth first search scan is " + (shortestPath.length + 1) + " steps.");
+    document.getElementById("instructions").innerHTML = "";
+    document.getElementById("instructions").style.color = "green";
+    document.getElementById("instructions").appendChild(instructions);
+
 }
