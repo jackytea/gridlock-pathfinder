@@ -8,17 +8,17 @@ Currently in alpha stage, more to come.
 
 # Algorithms Utilized
 
-### Brute Force Linear Scan
+### Breadth First Search (8-Connectivity)
 
-- Traverses the adjacency matrix to find a path from the start node to the end node.
+- Generates an auxiliary adjacency list to find the shortest path via mapping and queuing. Takes in to consideration diagonal directions.
 
 ### Breadth First Search (4-Connectivity)
 
 - Generates an auxiliary adjacency list to find the shortest path via mapping and queuing.
 
-### Breadth First Search (8-Connectivity)
+### Brute Force Linear Scan
 
-- Generates an auxiliary adjacency list to find the shortest path via mapping and queuing. Takes in to consideration diagonal directions.
+- Traverses the adjacency matrix to find a path from the start node to the end node.
 
 # Demonstration GIFs
 
