@@ -84,6 +84,10 @@ html, body {
     height: 84vh;
 }
 
+.matrix #instructions {
+    font-size: 1.3vw;
+}
+
 .matrix #empty-message {
     font-size: 2.5vw;
     color: rgb(154, 154, 154);
@@ -200,6 +204,9 @@ html, body {
     .matrix {
         height: 100vh;
     }
+    .matrix #instructions {
+        font-size: 2.6vw;
+    } 
     .matrix #empty-message {
         font-size: 3.5vw;
     }
@@ -259,6 +266,9 @@ html, body {
     .top-bar .dimensions-fields #submit-button {
         font-size: 3vw;
     }
+    .matrix #instructions {
+        font-size: 5.2vw;
+    } 
     .bottom-bar h3 {
         font-size: 5vw;
     }
