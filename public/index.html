@@ -25,6 +25,8 @@
         </div>
         <div class="dimensions-fields">
             <form name="grid-form" id="dimensions-form" onsubmit="genGrid(event)" method="POST">
+                <label for="obstacles">Toggle Obstacle Mode</label>
+                <input id="obstacle-checkbox" name="obstacles" type="checkbox" onchange="toggleObstacleMode()" />
                 <label for="rows">Rows</label>
                 <input name="rows" type="number" value="10" />
                 <label for="rows">Columns</label>

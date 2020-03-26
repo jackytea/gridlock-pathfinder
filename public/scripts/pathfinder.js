@@ -12,65 +12,109 @@ let endPoint = 0;
 let prevStartPoint = 0;
 let prevEndPoint = 0;
 let startOrEnd = 1; //1 is start, 2 is end
+let obstacleMode = false;
 let intervalTracker = [];
+
+//onload
+window.onload = function () {
+    obstacleMode = false;
+    let obstacleCheckBox = document.getElementById("obstacle-checkbox");
+    obstacleCheckBox.checked = false;
+}
 
 //set start and end coordinates
 function setStartOrEnd(id) {
-    if (startOrEnd === 1) {
+    if (!obstacleMode) {
+        if (startOrEnd === 1) {
 
-        let prevStartPointDiv = document.getElementById(prevStartPoint.toString());
-        prevStartPointDiv.innerHTML = "";
-        prevStartPointDiv.style.background = "grey";
-        prevStartPoint = id;
-        startPoint = id;
+            let prevStartPointDiv = document.getElementById(prevStartPoint.toString());
+            prevStartPointDiv.innerHTML = "";
+            prevStartPointDiv.style.background = "grey";
+            prevStartPoint = id;
+            startPoint = id;
 
-        let startText = document.createTextNode("S");
-        let startSpan = document.createElement("span");
-        startSpan.style.fontWeight = "bold";
-        startSpan.style.padding = "0";
-        startSpan.style.margin = "0";
-        startSpan.style.position = "absolute";
-        startSpan.style.fontSize = "24px";
-        startSpan.style.top = "50%";
-        startSpan.style.left = "50%";
-        startSpan.style.transform = "translate(-50%, -50%)";
-        startSpan.appendChild(startText);
+            let startText = document.createTextNode("S");
+            let startSpan = document.createElement("span");
+            startSpan.style.fontWeight = "bold";
+            startSpan.style.padding = "0";
+            startSpan.style.margin = "0";
+            startSpan.style.position = "absolute";
+            startSpan.style.fontSize = "24px";
+            startSpan.style.top = "50%";
+            startSpan.style.left = "50%";
+            startSpan.style.transform = "translate(-50%, -50%)";
+            startSpan.appendChild(startText);
 
-        let currentStartPointDiv = document.getElementById(id.toString());
-        currentStartPointDiv.style.background = "green";
-        currentStartPointDiv.style.color = "white";
-        currentStartPointDiv.style.position = "relative";
-        currentStartPointDiv.appendChild(startSpan);
+            let currentStartPointDiv = document.getElementById(id.toString());
+            currentStartPointDiv.style.background = "green";
+            currentStartPointDiv.style.color = "white";
+            currentStartPointDiv.style.position = "relative";
+            currentStartPointDiv.appendChild(startSpan);
 
-        startOrEnd = 2;
+            startOrEnd = 2;
 
+        } else {
+
+            let prevEndPointDiv = document.getElementById(prevEndPoint.toString());
+            prevEndPointDiv.innerHTML = "";
+            prevEndPointDiv.style.background = "grey";
+            prevEndPoint = id;
+            endPoint = id;
+
+            let endText = document.createTextNode("E");
+            let endSpan = document.createElement("span");
+            endSpan.style.fontWeight = "bold";
+            endSpan.style.padding = "0";
+            endSpan.style.margin = "0";
+            endSpan.style.position = "absolute";
+            endSpan.style.fontSize = "24px";
+            endSpan.style.top = "50%";
+            endSpan.style.left = "50%";
+            endSpan.style.transform = "translate(-50%, -50%)";
+            endSpan.appendChild(endText);
+
+            let currentEndPointDiv = document.getElementById(id.toString());
+            currentEndPointDiv.style.background = "orange";
+            currentEndPointDiv.style.color = "white";
+            currentEndPointDiv.style.position = "relative";
+            currentEndPointDiv.appendChild(endSpan);
+
+            startOrEnd = 1;
+        }
     } else {
+        let obstacleDiv = document.getElementById(id.toString());
+        obstacleDiv.setAttribute("isObstacle", "true");
+        obstacleDiv.style.background = "black";
+        obstacleDiv.style.color = "white";
+        obstacleDiv.style.position = "relative";
+        obstacleDiv.addEventListener("click", function () {
+            if (obstacleDiv.getAttribute("isObstacle") === "true") {
+                obstacleDiv.style.background = "grey";
+                obstacleDiv.setAttribute("isObstacle", "false");
+            } else {
+                obstacleDiv.style.background = "black";
+                obstacleDiv.setAttribute("isObstacle", "true");
+            }
+        });
+    }
+}
 
-        let prevEndPointDiv = document.getElementById(prevEndPoint.toString());
-        prevEndPointDiv.innerHTML = "";
-        prevEndPointDiv.style.background = "grey";
-        prevEndPoint = id;
-        endPoint = id;
-
-        let endText = document.createTextNode("E");
-        let endSpan = document.createElement("span");
-        endSpan.style.fontWeight = "bold";
-        endSpan.style.padding = "0";
-        endSpan.style.margin = "0";
-        endSpan.style.position = "absolute";
-        endSpan.style.fontSize = "24px";
-        endSpan.style.top = "50%";
-        endSpan.style.left = "50%";
-        endSpan.style.transform = "translate(-50%, -50%)";
-        endSpan.appendChild(endText);
-
-        let currentEndPointDiv = document.getElementById(id.toString());
-        currentEndPointDiv.style.background = "orange";
-        currentEndPointDiv.style.color = "white";
-        currentEndPointDiv.style.position = "relative";
-        currentEndPointDiv.appendChild(endSpan);
-
-        startOrEnd = 1;
+//toggle obstacle setting mode
+function toggleObstacleMode() {
+    obstacleMode = !obstacleMode;
+    let obstacleCheckBox = document.getElementById("obstacle-checkbox");
+    if (obstacleCheckBox.checked === true) {
+        let instructionsDiv = document.getElementById("instructions");
+        let instructions = document.createTextNode("(Obstacle mode on) Click on any point to set an obstacle, click again to un set it.");
+        instructionsDiv.innerHTML = "";
+        instructionsDiv.style.color = "green";
+        instructionsDiv.appendChild(instructions);
+    } else {
+        let instructionsDiv = document.getElementById("instructions");
+        let instructions = document.createTextNode("(Obstacle mode off) Click on any 2 points to set a start and end point.");
+        instructionsDiv.innerHTML = "";
+        instructionsDiv.style.color = "darkorange";
+        instructionsDiv.appendChild(instructions);
     }
 }
 
@@ -150,6 +194,7 @@ function genGrid(e) {
             theCol.style.background = "grey";
             theCol.style.marginLeft = "10px";
             theCol.setAttribute("coordinates", i.toString() + "," + j.toString());
+            theCol.setAttribute("isObstacle", "false");
             theCol.addEventListener("click", function () {
                 setStartOrEnd(parseInt(theCol.id));
             });
@@ -180,10 +225,10 @@ function clearGrid() {
     //reset grid and running intervals
     let limits = rc.getDimensions().rows * rc.getDimensions().cols;
     for (let i = 0; i < limits; i++) {
-        if (i != startPoint && i != endPoint) {
-            document.getElementById(i.toString()).innerHTML = "";
-            document.getElementById(i.toString()).style.background = "grey";
-        }
+        let currentDiv = document.getElementById(i.toString());
+        currentDiv.innerHTML = "";
+        currentDiv.style.background = "grey";
+        currentDiv.setAttribute("isObstacle", "false");
     }
     for (let i = 0; i < intervalTracker.length; i++) {
         clearInterval(intervalTracker[i]);
@@ -192,16 +237,26 @@ function clearGrid() {
 
 //brute force path find
 function linearScanHelper() {
+    //clear any current paths
     let limits = rc.getDimensions().rows * rc.getDimensions().cols;
     for (let i = 0; i < limits; i++) {
-        if (i != startPoint && i != endPoint) {
+        if (i != startPoint && i != endPoint && document.getElementById(i.toString()).getAttribute("isObstacle") === "false") {
             document.getElementById(i.toString()).style.background = "grey";
         }
+        if (document.getElementById(i.toString()).style.background === "red" && document.getElementById(i.toString()).getAttribute("isObstacle") === "true") {
+            document.getElementById(i.toString()).style.background = "grey";
+            document.getElementById(i.toString()).setAttribute("isObstacle", "false");
+        }
     }
+
+    //clear running intervals
     for (let i = 0; i < intervalTracker.length; i++) {
         clearInterval(intervalTracker[i]);
     }
+
+    //check where start and end is
     if (startPoint > endPoint) {
+
         let uid = startPoint - 1;
         let cell = document.getElementById(uid.toString());
         let run = setInterval(traverse, 50);
@@ -213,19 +268,31 @@ function linearScanHelper() {
                 if (!cell) {
                     clearInterval(run);
                 }
+                if (cell.getAttribute("isObstacle") === "true") {
+                    clearInterval(run);
+                    //not found
+                    let instructionsDiv = document.getElementById("instructions");
+                    let instructions = document.createTextNode("Unable to find path via linear scan!");
+                    instructionsDiv.innerHTML = "";
+                    instructionsDiv.style.color = "red";
+                    instructionsDiv.appendChild(instructions);
+                    return;
+                }
                 cell.style.background = "red";
                 uid--;
-
                 cell = document.getElementById(uid.toString());
             }
         }
+
         //amount of steps
         let instructionsDiv = document.getElementById("instructions");
         let instructions = document.createTextNode("Shortest path via linear scan is " + Math.abs(startPoint - endPoint) + " steps.");
         instructionsDiv.innerHTML = "";
         instructionsDiv.style.color = "green";
         instructionsDiv.appendChild(instructions);
+
     } else {
+
         let uid = startPoint + 1;
         let cell = document.getElementById(uid.toString());
         let run = setInterval(traverse, 50);
@@ -237,11 +304,22 @@ function linearScanHelper() {
                 if (!cell) {
                     clearInterval(run);
                 }
+                if (cell.getAttribute("isObstacle") === "true") {
+                    clearInterval(run);
+                    //not found
+                    let instructionsDiv = document.getElementById("instructions");
+                    let instructions = document.createTextNode("Unable to find path via linear scan!");
+                    instructionsDiv.innerHTML = "";
+                    instructionsDiv.style.color = "red";
+                    instructionsDiv.appendChild(instructions);
+                    return;
+                }
                 cell.style.background = "red";
                 uid++;
                 cell = document.getElementById(uid.toString());
             }
         }
+
         //amount of steps
         let instructionsDiv = document.getElementById("instructions");
         let instructions = document.createTextNode("Shortest path via linear scan is " + Math.abs(startPoint - endPoint) + " steps.");
@@ -257,8 +335,9 @@ function linearScan() {
 }
 
 //check if index is valid
-function checkBounds(i, j) {
-    return i < rc.getDimensions().rows && i >= 0 && j < rc.getDimensions().cols && j >= 0;
+function checkBounds(matrix, i, j) {
+    return i < rc.getDimensions().rows && i >= 0 && j < rc.getDimensions().cols && j >= 0
+        && document.getElementById(matrix[i][j].toString()).getAttribute("isObstacle") === "false";
 }
 
 //make an graph from 2d array (adjacency list) - 4 connectivity
@@ -269,22 +348,22 @@ function convertToAdjacencyList(matrix) {
             let neighborsList = [];
 
             //check up
-            if (checkBounds(i - 1, j)) {
+            if (checkBounds(matrix, i - 1, j)) {
                 neighborsList.push(matrix[i - 1][j]);
             }
 
             //check down
-            if (checkBounds(i + 1, j)) {
+            if (checkBounds(matrix, i + 1, j)) {
                 neighborsList.push(matrix[i + 1][j]);
             }
 
             //check left 
-            if (checkBounds(i, j - 1)) {
+            if (checkBounds(matrix, i, j - 1)) {
                 neighborsList.push(matrix[i][j - 1]);
             }
 
             //check right
-            if (checkBounds(i, j + 1)) {
+            if (checkBounds(matrix, i, j + 1)) {
                 neighborsList.push(matrix[i][j + 1]);
             }
 
@@ -302,42 +381,42 @@ function convertToAdjacencyList8Directions(matrix) {
             let neighborsList = [];
 
             //check up
-            if (checkBounds(i - 1, j)) {
+            if (checkBounds(matrix, i - 1, j)) {
                 neighborsList.push(matrix[i - 1][j]);
             }
 
             //check down
-            if (checkBounds(i + 1, j)) {
+            if (checkBounds(matrix, i + 1, j)) {
                 neighborsList.push(matrix[i + 1][j]);
             }
 
             //check left 
-            if (checkBounds(i, j - 1)) {
+            if (checkBounds(matrix, i, j - 1)) {
                 neighborsList.push(matrix[i][j - 1]);
             }
 
             //check right
-            if (checkBounds(i, j + 1)) {
+            if (checkBounds(matrix, i, j + 1)) {
                 neighborsList.push(matrix[i][j + 1]);
             }
 
             //check top left
-            if (checkBounds(i - 1, j - 1)) {
+            if (checkBounds(matrix, i - 1, j - 1)) {
                 neighborsList.push(matrix[i - 1][j - 1]);
             }
 
             //check top right
-            if (checkBounds(i - 1, j + 1)) {
+            if (checkBounds(matrix, i - 1, j + 1)) {
                 neighborsList.push(matrix[i - 1][j + 1]);
             }
 
             //check bottom left
-            if (checkBounds(i + 1, j - 1)) {
+            if (checkBounds(matrix, i + 1, j - 1)) {
                 neighborsList.push(matrix[i + 1][j - 1]);
             }
 
             //check bottom right
-            if (checkBounds(i + 1, j + 1)) {
+            if (checkBounds(matrix, i + 1, j + 1)) {
                 neighborsList.push(matrix[i + 1][j + 1]);
             }
 
@@ -391,37 +470,51 @@ function breadthFirstSearch() {
     //get shortest path
     let adjacencyList = convertToAdjacencyList(matrix);
     let shortestPath = breadthFirstSearchHelper(adjacencyList, startPoint, endPoint);
-    shortestPath.shift();
-    shortestPath.pop();
 
     //clear any current paths
     let limits = rc.getDimensions().rows * rc.getDimensions().cols;
     for (let i = 0; i < limits; i++) {
-        if (i != startPoint && i != endPoint) {
+        if (i != startPoint && i != endPoint && document.getElementById(i.toString()).getAttribute("isObstacle") === "false") {
             document.getElementById(i.toString()).style.background = "grey";
         }
-    }
-
-    //highlight path
-    let run = setInterval(traverse, 50);
-    intervalTracker.push(run);
-    let i = 0;
-    function traverse() {
-        if (i === shortestPath.length) {
-            clearInterval(run);
-        }
-        else {
-            document.getElementById(shortestPath[i].toString()).style.background = "red";
-            i++;
+        if (document.getElementById(i.toString()).style.background === "red" && document.getElementById(i.toString()).getAttribute("isObstacle") === "true") {
+            document.getElementById(i.toString()).style.background = "grey";
+            document.getElementById(i.toString()).setAttribute("isObstacle", "false");
         }
     }
 
     //amount of steps
-    let instructionsDiv = document.getElementById("instructions");
-    let instructions = document.createTextNode("Shortest path via quad-directional breadth first search is " + (shortestPath.length + 1) + " steps.");
-    instructionsDiv.innerHTML = "";
-    instructionsDiv.style.color = "green";
-    instructionsDiv.appendChild(instructions);
+    if (shortestPath !== undefined) {
+
+        //don't count end and start
+        shortestPath.shift();
+        shortestPath.pop();
+
+        //highlight path
+        let run = setInterval(traverse, 50);
+        intervalTracker.push(run);
+        let i = 0;
+        function traverse() {
+            if (i === shortestPath.length) {
+                clearInterval(run);
+            }
+            else {
+                document.getElementById(shortestPath[i].toString()).style.background = "red";
+                i++;
+            }
+        }
+        let instructionsDiv = document.getElementById("instructions");
+        let instructions = document.createTextNode("Shortest path via quad-directional breadth first search is " + (shortestPath.length + 1) + " steps.");
+        instructionsDiv.innerHTML = "";
+        instructionsDiv.style.color = "green";
+        instructionsDiv.appendChild(instructions);
+    } else {
+        let instructionsDiv = document.getElementById("instructions");
+        let instructions = document.createTextNode("Unable to find path via quad-directional breadth first search!");
+        instructionsDiv.innerHTML = "";
+        instructionsDiv.style.color = "red";
+        instructionsDiv.appendChild(instructions);
+    }
 }
 
 //setup matrixes and trace BFS path for a 8 connectivity traversal
@@ -445,35 +538,50 @@ function breadthFirstSearch8Directions() {
     //get shortest path
     let adjacencyList = convertToAdjacencyList8Directions(matrix);
     let shortestPath = breadthFirstSearchHelper(adjacencyList, startPoint, endPoint);
-    shortestPath.shift();
-    shortestPath.pop();
 
     //clear any current paths
     let limits = rc.getDimensions().rows * rc.getDimensions().cols;
     for (let i = 0; i < limits; i++) {
-        if (i != startPoint && i != endPoint) {
+        if (i != startPoint && i != endPoint && document.getElementById(i.toString()).getAttribute("isObstacle") === "false") {
             document.getElementById(i.toString()).style.background = "grey";
         }
-    }
-
-    //highlight path
-    let run = setInterval(traverse, 50);
-    intervalTracker.push(run);
-    let i = 0;
-    function traverse() {
-        if (i === shortestPath.length) {
-            clearInterval(run);
-        }
-        else {
-            document.getElementById(shortestPath[i].toString()).style.background = "red";
-            i++;
+        if (document.getElementById(i.toString()).style.background === "red" && document.getElementById(i.toString()).getAttribute("isObstacle") === "true") {
+            document.getElementById(i.toString()).style.background = "grey";
+            document.getElementById(i.toString()).setAttribute("isObstacle", "false");
         }
     }
 
     //amount of steps
-    let instructionsDiv = document.getElementById("instructions");
-    let instructions = document.createTextNode("Shortest path via octal-directional breadth first search is " + (shortestPath.length + 1) + " steps.");
-    instructionsDiv.innerHTML = "";
-    instructionsDiv.style.color = "green";
-    instructionsDiv.appendChild(instructions);
+    if (shortestPath !== undefined) {
+
+        //don't count end and start
+        shortestPath.shift();
+        shortestPath.pop();
+
+        //highlight path
+        let run = setInterval(traverse, 50);
+        intervalTracker.push(run);
+        let i = 0;
+        function traverse() {
+            if (i === shortestPath.length) {
+                clearInterval(run);
+            }
+            else {
+                document.getElementById(shortestPath[i].toString()).style.background = "red";
+                i++;
+            }
+        }
+
+        let instructionsDiv = document.getElementById("instructions");
+        let instructions = document.createTextNode("Shortest path via octal-directional breadth first search is " + (shortestPath.length + 1) + " steps.");
+        instructionsDiv.innerHTML = "";
+        instructionsDiv.style.color = "green";
+        instructionsDiv.appendChild(instructions);
+    } else {
+        let instructionsDiv = document.getElementById("instructions");
+        let instructions = document.createTextNode("Unable to find path via octal-directional breadth first search!");
+        instructionsDiv.innerHTML = "";
+        instructionsDiv.style.color = "red";
+        instructionsDiv.appendChild(instructions);
+    }
 }
