@@ -46,6 +46,10 @@ function setStartOrEnd(id) {
             startSpan.appendChild(startText);
 
             let currentStartPointDiv = document.getElementById(id.toString());
+            currentStartPointDiv.innerHTML = "";
+            if (currentStartPointDiv.getAttribute("isObstacle") === "true") {
+                currentStartPointDiv.setAttribute("isObstacle", "false");
+            }
             currentStartPointDiv.style.background = "green";
             currentStartPointDiv.style.color = "white";
             currentStartPointDiv.style.position = "relative";
@@ -74,6 +78,10 @@ function setStartOrEnd(id) {
             endSpan.appendChild(endText);
 
             let currentEndPointDiv = document.getElementById(id.toString());
+            currentEndPointDiv.innerHTML = "";
+            if (currentEndPointDiv.getAttribute("isObstacle") === "true") {
+                currentEndPointDiv.setAttribute("isObstacle", "false");
+            }
             currentEndPointDiv.style.background = "orange";
             currentEndPointDiv.style.color = "white";
             currentEndPointDiv.style.position = "relative";
@@ -83,17 +91,22 @@ function setStartOrEnd(id) {
         }
     } else {
         let obstacleDiv = document.getElementById(id.toString());
+        obstacleDiv.innerHTML = "";
         obstacleDiv.setAttribute("isObstacle", "true");
         obstacleDiv.style.background = "black";
         obstacleDiv.style.color = "white";
         obstacleDiv.style.position = "relative";
         obstacleDiv.addEventListener("click", function () {
-            if (obstacleDiv.getAttribute("isObstacle") === "true") {
-                obstacleDiv.style.background = "grey";
-                obstacleDiv.setAttribute("isObstacle", "false");
+            if (obstacleMode) {
+                if (obstacleDiv.getAttribute("isObstacle") === "true") {
+                    obstacleDiv.style.background = "grey";
+                    obstacleDiv.setAttribute("isObstacle", "false");
+                } else {
+                    obstacleDiv.style.background = "black";
+                    obstacleDiv.setAttribute("isObstacle", "true");
+                }
             } else {
-                obstacleDiv.style.background = "black";
-                obstacleDiv.setAttribute("isObstacle", "true");
+                obstacleDiv.setAttribute("isObstacle", "false");
             }
         });
     }
