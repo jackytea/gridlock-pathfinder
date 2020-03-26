@@ -4,8 +4,6 @@ A pathfinding algorithm visualizer using a 2D matrix.
 
 You can visit the site [here](https://serene-citadel-76223.herokuapp.com/ "Gridlock Pathfinder").
 
-Currently in alpha stage, more to come.
-
 # Algorithms Utilized
 
 ### Breadth First Search (8-Connectivity)
