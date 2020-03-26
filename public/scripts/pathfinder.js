@@ -39,7 +39,7 @@ function setStartOrEnd(id) {
             startSpan.style.padding = "0";
             startSpan.style.margin = "0";
             startSpan.style.position = "absolute";
-            startSpan.style.fontSize = "24px";
+            startSpan.style.fontSize = "2vw";
             startSpan.style.top = "50%";
             startSpan.style.left = "50%";
             startSpan.style.transform = "translate(-50%, -50%)";
@@ -71,7 +71,7 @@ function setStartOrEnd(id) {
             endSpan.style.padding = "0";
             endSpan.style.margin = "0";
             endSpan.style.position = "absolute";
-            endSpan.style.fontSize = "24px";
+            endSpan.style.fontSize = "2vw";
             endSpan.style.top = "50%";
             endSpan.style.left = "50%";
             endSpan.style.transform = "translate(-50%, -50%)";
@@ -202,10 +202,10 @@ function genGrid(e) {
             let theCol = document.createElement("div");
             theCol.id = uid.toString();
             theCol.style.display = "inline-block";
-            theCol.style.width = "45px";
-            theCol.style.height = "45px";
+            //theCol.style.width = "3vw";
+            //theCol.style.height = "6vh";
             theCol.style.background = "grey";
-            theCol.style.marginLeft = "10px";
+            theCol.style.marginLeft = "0.5vw";
             theCol.setAttribute("coordinates", i.toString() + "," + j.toString());
             theCol.setAttribute("isObstacle", "false");
             theCol.addEventListener("click", function () {

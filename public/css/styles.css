@@ -17,8 +17,18 @@ a:hover {
     color: rgb(31, 102, 255);
 }
 
+input[type=checkbox] {
+    width: 2vw;
+    height: 2vh;
+}
+
+input {
+    width: 10vw;
+    height: 2vh;
+}
+
 html, body {
-    font-family: 'Roboto', sans-serif;
+    font-family: sans-serif;
     width: 100%;
     height: 100%;
     padding: 0;
@@ -34,13 +44,18 @@ html, body {
 }
 
 .top-bar .title h1 {
+    font-size: 2vw;
     padding: 1vh 0 0 20px;
     margin: 0;
     color: white;
 }
 
+.top-bar #dimensions-form {
+    font-size: 1vw;
+}
+
 .top-bar .dimensions-fields #submit-button {
-    font-size: 15px;
+    font-size: 1vw;
     color: white;
     border: none;
     border-radius: 50px;
@@ -70,6 +85,7 @@ html, body {
 }
 
 .matrix #empty-message {
+    font-size: 2.5vw;
     color: rgb(154, 154, 154);
     width: 100%;
     position: absolute;
@@ -86,6 +102,11 @@ html, body {
     transform: translate(-50%, -50%);
 }
 
+.matrix>.grids>div>div {
+    width: 3vw;
+    height: 6vh;
+}
+
 .bottom-bar {
     color: white;
     display: flex;
@@ -98,6 +119,7 @@ html, body {
 .bottom-bar h3 {
     padding: 2vh 0 0 0;
     margin: 0;
+    font-size: 1.3vw;
 }
 
 .bottom-bar .options {
@@ -106,23 +128,23 @@ html, body {
 }
 
 .bottom-bar .options button {
-    font-size: 15px;
+    font-size: 1vw;
     color: white;
     border: none;
     border-radius: 50px;
     background: rgb(31, 102, 255);
-    padding: 5px;
+    padding: 5px 10px 5px 10px;
     height: 4vh;
     margin: 1vh 5px 0 10px;
 }
 
 .bottom-bar .options #clear {
-    font-size: 15px;
+    font-size: 1vw;
     color: white;
     border: none;
     border-radius: 50px;
     background: rgb(255, 28, 28);
-    padding: 5px;
+    padding: 5px 10px 5px 10px;
     height: 4vh;
     margin: 1vh 0 0 10px;
 }
@@ -137,4 +159,116 @@ html, body {
     cursor: pointer;
     transition: 0.2s;
     background: rgb(155, 11, 11);
+}
+
+/* tablet */
+
+@media only screen and (max-width: 1200px) {
+    input[type=checkbox] {
+        width: 2.5vw;
+        height: 2.5vh;
+    }
+    input {
+        width: 15vw;
+        height: 2vh;
+    }
+    .top-bar {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 25vh;
+    }
+    .top-bar .title {
+        text-align: center;
+    }
+    .top-bar .title h1 {
+        margin: 0;
+        padding: 0;
+        font-size: 4vw;
+    }
+    .top-bar #dimensions-form {
+        font-size: 2vw;
+    }
+    .top-bar .dimensions-fields #submit-button {
+        font-size: 2vw;
+    }
+    .top-bar #grid-form {
+        text-align: center;
+        display: block;
+    }
+    .matrix {
+        height: 100vh;
+    }
+    .matrix #empty-message {
+        font-size: 3.5vw;
+    }
+    .matrix .grids div div {
+        width: 3vw;
+        height: 6vh;
+    }
+    .bottom-bar {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 40vh;
+    }
+    .bottom-bar h3 {
+        font-size: 3vw;
+    }
+    .bottom-bar #my-name {
+        order: 3;
+    }
+    .bottom-bar #timing {
+        order: 2;
+    }
+    .bottom-bar .options {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .bottom-bar .options button {
+        font-size: 2vw;
+    }
+    .bottom-bar .options #clear {
+        font-size: 2vw;
+    }
+}
+
+/* mobile */
+
+@media only screen and (max-width: 650px) {
+    input[type=checkbox] {
+        width: 3.5vw;
+        height: 3.5vh;
+    }
+    input {
+        width: 20vw;
+        height: 2vh;
+    }
+    .top-bar {
+        height: 20vh;
+    }
+    .top-bar .title h1 {
+        font-size: 6vw;
+    }
+    .top-bar #dimensions-form {
+        font-size: 4vw;
+    }
+    .top-bar .dimensions-fields #submit-button {
+        font-size: 3vw;
+    }
+    .bottom-bar h3 {
+        font-size: 5vw;
+    }
+    .bottom-bar .options button {
+        font-size: 3.5vw;
+    }
+    .bottom-bar .options #clear {
+        font-size: 3.5vw;
+    }
+    .matrix #empty-message {
+        font-size: 4.5vw;
+    }
 }
