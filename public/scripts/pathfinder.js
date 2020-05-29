@@ -20,6 +20,7 @@ window.onload = function () {
     obstacleMode = false;
     let obstacleCheckBox = document.getElementById("obstacle-checkbox");
     obstacleCheckBox.checked = false;
+    initGrid();
 }
 
 //set start and end coordinates
@@ -146,6 +147,84 @@ function dimensions() {
     }
 }
 let rc = dimensions();
+
+//initialize a matrix of row * col dimension
+function initGrid() {
+
+    //remove prompt and append instructions
+    let emptyMessageDiv = document.getElementById("empty-message");
+    emptyMessageDiv.innerHTML = "";
+    let instructionsDiv = document.getElementById("instructions");
+    instructionsDiv.style.color = "black";
+    let instructions = document.createTextNode("Click on any two points on the grid and make a path with the buttons below.");
+    instructionsDiv.innerHTML = "";
+    instructionsDiv.appendChild(instructions);
+
+    //reset points
+    startPoint = 0;
+    endPoint = 0;
+    prevStartPoint = 0;
+    prevEndPoint = 0;
+    startOrEnd = 1;
+
+    //parse form and restrictions
+    let grid = document.getElementById("theGrid");
+    grid.innerHTML = "";
+    rc.setDimensions(10, 26);
+    let rows = rc.getDimensions().rows;
+    let cols = rc.getDimensions().cols;
+    if (rows > 10 || cols > 26 || rows <= 0 || cols <= 0) {
+        let instructionsDiv = document.getElementById("instructions");
+        instructionsDiv.innerHTML = "";
+        let emptyMessageDiv = document.getElementById("empty-message");
+        emptyMessageDiv.innerHTML = "";
+        emptyMessageDiv.style.color = "darkorange";
+        let error = document.createTextNode("Woops! Max rows is 10 and max columns is 26.");
+        emptyMessageDiv.appendChild(error);
+        return;
+    }
+
+    //append divs to the DOM
+    let uid = 0;
+    for (let i = 0; i < rows; i++) {
+
+        //rows
+        let theRow = document.createElement("div");
+        theRow.id = "row" + i.toString();
+        theRow.style.width = "100%";
+        theRow.style.height = "50px";
+        theRow.style.marginTop = "10px";
+        grid.appendChild(theRow);
+
+        //columns
+        for (let j = 0; j < cols; j++) {
+            let currentRow = document.getElementById("row" + i.toString());
+            let theCol = document.createElement("div");
+            theCol.id = uid.toString();
+            theCol.style.display = "inline-block";
+            //theCol.style.width = "3vw";
+            //theCol.style.height = "6vh";
+            theCol.style.background = "grey";
+            theCol.style.marginLeft = "0.5vw";
+            theCol.setAttribute("coordinates", i.toString() + "," + j.toString());
+            theCol.setAttribute("isObstacle", "false");
+            theCol.addEventListener("click", function () {
+                setStartOrEnd(parseInt(theCol.id));
+            });
+            theCol.onmouseover = function () {
+                theCol.style.transform = "scale(1.1)";
+                theCol.style.filter = "brightness(75%)";
+            };
+            theCol.onmouseout = function () {
+                theCol.style.transform = "scale(1)";
+                theCol.style.filter = "brightness(100%)";
+            };
+            ++uid;
+            currentRow.appendChild(theCol);
+        }
+    }
+}
+
 
 //generate a matrix of row * col dimension
 function genGrid(e) {
