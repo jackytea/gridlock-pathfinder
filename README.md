@@ -1,10 +1,14 @@
 # Gridlock Pathfinder
 
+## Overview
+
 A pathfinding algorithm visualizer using a 2D matrix.
 
-You can visit the site [here](https://serene-citadel-76223.herokuapp.com/ "Gridlock Pathfinder").
+You check it out [here](https://serene-citadel-76223.herokuapp.com/ "Gridlock Pathfinder").
 
-# Algorithms Utilized
+**Note**: this is a [Heroku](https://www.heroku.com/ "Heroku Main Page") hosted site and may take time to connect to. 
+
+## Algorithms Utilized
 
 ### Breadth First Search (8-Connectivity)
 
@@ -18,7 +22,9 @@ You can visit the site [here](https://serene-citadel-76223.herokuapp.com/ "Gridl
 
 - Traverses the adjacency matrix to find a path from the start node to the end node.
 
-# Demonstration GIFs
+For more reading on the BFS algorithm, click [here.](https://en.wikipedia.org/wiki/Breadth-first_search, "Breadth First Search")
+
+## Demonstration GIFs
 
 #### Breadth First Search (8-Connectivity) Demo
 
