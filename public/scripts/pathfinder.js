@@ -192,8 +192,8 @@ function initGrid() {
         let theRow = document.createElement("div");
         theRow.id = "row" + i.toString();
         theRow.style.width = "100%";
-        theRow.style.height = "50px";
-        theRow.style.marginTop = "10px";
+        theRow.style.height = "2.5vw";
+        theRow.style.marginTop = "1vw";
         grid.appendChild(theRow);
 
         //columns
@@ -202,8 +202,8 @@ function initGrid() {
             let theCol = document.createElement("div");
             theCol.id = uid.toString();
             theCol.style.display = "inline-block";
-            //theCol.style.width = "3vw";
-            //theCol.style.height = "6vh";
+            theCol.style.width = "3vw";
+            theCol.style.height = "3vw";
             theCol.style.background = "grey";
             theCol.style.marginLeft = "0.5vw";
             theCol.setAttribute("coordinates", i.toString() + "," + j.toString());
@@ -271,8 +271,8 @@ function genGrid(e) {
         let theRow = document.createElement("div");
         theRow.id = "row" + i.toString();
         theRow.style.width = "100%";
-        theRow.style.height = "50px";
-        theRow.style.marginTop = "10px";
+        theRow.style.height = "2.5vw";
+        theRow.style.marginTop = "1vw";
         grid.appendChild(theRow);
 
         //columns
@@ -281,8 +281,8 @@ function genGrid(e) {
             let theCol = document.createElement("div");
             theCol.id = uid.toString();
             theCol.style.display = "inline-block";
-            //theCol.style.width = "3vw";
-            //theCol.style.height = "6vh";
+            theCol.style.width = "3vw";
+            theCol.style.height = "3vw";
             theCol.style.background = "grey";
             theCol.style.marginLeft = "0.5vw";
             theCol.setAttribute("coordinates", i.toString() + "," + j.toString());
