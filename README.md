@@ -4,9 +4,7 @@
 
 A pathfinding algorithm visualizer using a 2D matrix.
 
-You check it out [here](https://serene-citadel-76223.herokuapp.com/ "Gridlock Pathfinder").
-
-**Note**: this is a [Heroku](https://www.heroku.com/ "Heroku Main Page") hosted site and may take time to connect to. 
+You check it out [here](https://jackytea.github.io/GH_Gridlock_Pathfinder/ "Gridlock Pathfinder").
 
 ## Algorithms Utilized
 
