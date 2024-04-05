@@ -1,0 +1,56 @@
+<!--
+    Jacky Tea
+    Gridlock Pathfinder
+    index.html
+    
+    A pathfinding algorithm visualization.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./public/img/path.jpg">
+    <link rel="stylesheet" href="./public/css/styles.css" />
+    <title>Gridlock Pathfinder</title>
+</head>
+
+<body>
+    <header class="top-bar">
+        <div class="title">
+            <h1>Gridlock Pathfinder</h1>
+        </div>
+        <div class="dimensions-fields">
+            <form name="grid-form" id="dimensions-form" onsubmit="genGrid(event)" method="POST">
+                <label for="obstacles">Toggle Obstacle Mode</label>
+                <input id="obstacle-checkbox" name="obstacles" type="checkbox" onchange="toggleObstacleMode()" />
+                <label for="rows">Rows</label>
+                <input name="rows" type="number" value="10" />
+                <label for="rows">Columns</label>
+                <input name="columns" type="number" value="26" />
+                <input id="submit-button" type="submit" value="Regenerate Grid" />
+            </form>
+        </div>
+    </header>
+    <div class="matrix">
+        <h3 id="instructions"></h3>
+        <h1 id="empty-message">Hmm... seems like you don't have a grid yet. <br />Click on generate grid in the top
+            right corner to make one.</h1>
+        <div id="theGrid" class="grids"></div>
+    </div>
+    <footer class="bottom-bar">
+        <h3 id="my-name"><a href="https://jackytea.com" target="_blank" rel="noopener noreferrer">&copy; Jacky Tea, 2020</a></h3>
+        <div class="options">
+        <button onclick="linearScan()">Linear Scan</button>
+        <button onclick="breadthFirstSearch()">Breadth First Search No Diagonals</button>
+        <button onclick="breadthFirstSearch8Directions()">Breadth First Search With Diagonals</button>
+        <button id="clear" onclick="clearGrid()">Clear Grid</button>
+        </div>
+        <h3 id="timing"><a href="https://github.com/JackyTea/Gridlock-Pathfinder" target="_blank" rel="noopener noreferrer">Source Code</a></h3>
+    </footer>
+    <script src="./public/scripts/pathfinder.js"></script>
+</body>
+
+</html>
