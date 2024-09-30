@@ -4,7 +4,7 @@
 
 A pathfinding algorithm visualizer using a 2D matrix.
 
-You check it out [here](https://jackytea.github.io/GH_Gridlock_Pathfinder/ "Gridlock Pathfinder").
+You check it out [here](https://jackytea.github.io/gridlock-pathfinder/).
 
 ## Algorithms Utilized
 
